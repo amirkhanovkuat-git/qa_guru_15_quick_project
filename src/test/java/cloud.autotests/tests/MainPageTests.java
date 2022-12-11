@@ -44,19 +44,19 @@ public class MainPageTests extends TestBase {
         });
     }
 
-//    @Test
-//    @DisplayName("Check employer page")
-//    void employerTest() {
-//        step("Open url 'https://hh.kz/'", () ->
-//                open("https://hh.kz/"));
-//
-//        step("Click link for employers", () ->
-//                $("[data-qa=mainmenu_priceRegional]").click());
-//
-//        step("Check text", () -> {
-//            $("[data-qa=cart__tab_dbaccess]").shouldHave(text("Покупка услуг по подбору персонала в Казахстане"));
-//        });
-//    }
+    @Test
+    @DisplayName("Check employer page")
+    void employerTest() {
+        step("Open url 'https://hh.kz/'", () ->
+                open("https://hh.kz/"));
+
+        step("Click link for employers", () ->
+                $("[data-qa=mainmenu_priceRegional]").click());
+
+        step("Check text", () -> {
+            $("[data-qa=cart__tab_dbaccess]").shouldHave(text("Покупка услуг по подбору персонала в Казахстане"));
+        });
+    }
 
     @Test
     @DisplayName("Сheck help button")
