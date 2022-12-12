@@ -1,90 +1,101 @@
 package cloud.autotests.tests;
 
-import cloud.autotests.helpers.DriverUtils;
-import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-import static org.assertj.core.api.Assertions.assertThat;
+
 
 
 public class MainPageTests extends TestBase {
     @Test
-    @DisplayName("Check search")
+    @DisplayName("Тест Поиска на главной странице")
     void searchTest() {
-        step("Open url 'https://hh.kz/'", () ->
-                open("https://hh.kz/"));
+        step("Открыть сайт 'https://shop.beeline.kz/ru/almaty'", () ->
+                open("https://shop.beeline.kz/ru/almaty"));
 
-        step("Set value to search", () ->
-                $(".bloko-input-text").setValue("qa automation")).pressEnter();
+        step("Вставить текст на поиск", () ->
+                $(".search-form__input").setValue("iphone")).pressEnter();
 
-        step("Texts should visible", () -> {
-            $(byText("Вакансии")).should(visible);
-            $(byText("Резюме")).should(visible);
-            $(byText("Компании")).should(visible);
+        step("Текст 'Результаты поиска' должны быть видимым", () -> {
+            $("main.main--search").shouldHave(text("Результаты поиска"));
         });
     }
 
     @Test
-    @DisplayName("Check page I want to work for you ")
-    void headerTest() {
-        step("Open url 'https://hh.kz/'", () ->
-                open("https://hh.kz/"));
+    @DisplayName("Тест Фильтра на странице Смартфоны")
+    void filterTest() {
+        step("Открыть сайт 'https://shop.beeline.kz/ru/almaty'", () ->
+                open("https://shop.beeline.kz/ru/almaty"));
 
-        step("Click link I want to work for you", () ->
-                $(".supernova-link.supernova-link_dimmed").click());
+        step("Нажать на ссылку 'Смартфоны'", () ->
+                $("#qa-nav-category-smartphones").click());
 
-        step("Header should visible", () -> {
-            $(".wtw__header__content").shouldHave(text("Выбрать компанию"));
+        step("Раскрыть пункт 'Операционная система'", () -> {
+            $("#filter-collapse-spec_general_os").scrollIntoView(true);
+            $("#filter-collapse-spec_general_os").click();
         });
+
+        step("Выбрать Операционную систему Anroid", () ->
+            $("[for=facet_spec_general_os_Android]").click());
+
+        step("Выбрать смартфон", () ->
+                $("#qa-smartphones-item-0").click());
+
+        step("Проверить указано ли в характеристике Операционная система - Android", () -> {
+                $(".table__row").scrollIntoView(true);
+                $(".row").shouldHave(
+                        text("Операционная система"),
+                        text("Android"));
+                });
     }
 
     @Test
-    @DisplayName("Check employer page")
-    void employerTest() {
-        step("Open url 'https://hh.kz/'", () ->
-                open("https://hh.kz/"));
+    @DisplayName("Тест Сортировки на странице Смартфоны")
+    void sortingTest() {
+        step("Открыть сайт 'https://shop.beeline.kz/ru/almaty'", () ->
+                open("https://shop.beeline.kz/ru/almaty"));
 
-        step("Click link for employers", () ->
-                $("[data-qa=mainmenu_priceRegional]").click());
+        step("Нажать на ссылку 'Смартфоны'", () ->
+                $("#qa-nav-category-smartphones").click());
 
-        step("Check text", () -> {
-            $("[data-qa=cart__tab_dbaccess]").shouldHave(text("Доступ к базе резюме"));
-        });
+        step("Нажать кнопку 'Сортировать'", () ->
+                $("[title=Сортировать]").click());
+
+        step("Выбрать пункт 'По новизне'", () ->
+                  $(".form-check-label").click());
+
+        step("Проверить выбрано ли сортировка 'По новизне'", () ->
+                $(".section__product__filters").shouldHave(text("По новизне")));
+
     }
 
     @Test
-    @DisplayName("Сheck help button")
+    @DisplayName("Проверить страницы Роутеры")
     void helpButtonTest() {
-        step("Open url 'https://hh.kz/'", () ->
-                open("https://hh.kz/"));
+        step("Открыть сайт 'https://shop.beeline.kz/ru/almaty'", () ->
+                open("https://shop.beeline.kz/ru/almaty"));
 
-        step("Click button Help", () ->
-                $("[data-qa=mainmenu_help]").click());
+        step("Нажать на ссылку 'Роутеры'", () ->
+                $("#qa-nav-category-routers").click());
 
-        step("Сheck that the link with text appear", () -> {
-            $(byText(
-                    "Вопросы и ответы"))
-                    .should(visible);
+
+        step("Проверить есть ли товар '4G Wi-Fi роутер Beeline MF927U'", () -> {
+            $(".card-v2__title").shouldHave(text("4G Wi-Fi роутер Beeline MF927U"));
         });
     }
 
     @Test
-    @DisplayName("Сheck Advanced Search")
+    @DisplayName("Проверить страницу Оплата и Доставка")
     void advancedSearchTest() {
-        step("Open url 'https://hh.kz/'", () ->
-                open("https://hh.kz/"));
+        step("Открыть сайт 'https://shop.beeline.kz/ru/almaty/content-page/shipping'", () ->
+                open("https://shop.beeline.kz/ru/almaty/content-page/shipping"));
 
-        step("Click to search element", () ->
-                $("[data-qa=advanced-search]")).click();
-
-        step("Сheck that the text appear", () -> {
-            $(byText("Ключевые слова")).should(visible);
+        step("Проверить в блоке Доставка", () -> {
+            $(".content-page")
+                    .shouldHave(text("Условия и стоимость доставки показана на странице оформления заказа."));
         });
     }
 }
