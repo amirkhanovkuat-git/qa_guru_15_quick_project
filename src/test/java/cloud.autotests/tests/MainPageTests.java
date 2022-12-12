@@ -31,7 +31,7 @@ public class MainPageTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Check Header text")
+    @DisplayName("Check page I want to work for you ")
     void headerTest() {
         step("Open url 'https://hh.kz/'", () ->
                 open("https://hh.kz/"));
@@ -40,7 +40,7 @@ public class MainPageTests extends TestBase {
                 $(".supernova-link.supernova-link_dimmed").click());
 
         step("Header should visible", () -> {
-            $(".wtw__h1-title").should(visible);
+            $(".wtw__header__content").shouldHave(text("Выбрать компанию"));
         });
     }
 
