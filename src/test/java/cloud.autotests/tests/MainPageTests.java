@@ -54,7 +54,7 @@ public class MainPageTests extends TestBase {
                 $("[data-qa=mainmenu_priceRegional]").click());
 
         step("Check text", () -> {
-            $(byText("Покупка услуг по подбору персонала в Алматы")).should(visible);
+            $(".bloko-header-1").shouldHave(text("Покупка услуг по подбору персонала в Алматы"));
         });
     }
 
