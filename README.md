@@ -1,7 +1,7 @@
 # Проект по автоматизации тестирования для Beeline Shop
-<a target="_blank" href="https://shop.beeline.kz/ru/almaty">Вэб сайт Beeline shop <img src="images/logo/Beeline_Shop_Logo.svg" width="15" height="15"  alt="Beeline Shop"/></a>
 
-## :pushpin: Содержание:
+
+## :page_with_curl: Содержание:
 
 - [Технологии и инструменты](#earth_africa-технологии-и-инструменты)
 - [Реализованные проверки](#earth_africa-Реализованные-проверки)
@@ -9,7 +9,6 @@
 - [Запуск из терминала](#earth_africa-Запуск-тестов-из-терминала)
 - [Allure отчет](#earth_africa-Allure-отчет)
 - [Интеграция с Allure TestOps](#earth_africa-Интеграция-с-Allure-TestOps)
-- [Интеграция с Jira](#earth_africa-Интеграция-с-Jira)
 - [Отчет в Telegram](#earth_africa-Уведомление-в-Telegram-при-помощи-бота)
 - [Видео примеры прохождения тестов](#earth_africa-Примеры-видео-о-прохождении-тестов)
 
@@ -25,54 +24,70 @@
 <code><img width="5%" title="GitHub" src="images/logo/GitHub.svg"></code>
 <code><img width="5%" title="Allure Report" src="images/logo/Allure.svg"></code>
 <code><img width="5%" title="Allure TestOps" src="images/logo/Allure_TO.svg"></code>
-<code><img width="5%" title="RestAssured" src="images/logo/RestAssured.svg"></code>
 <code><img width="5%" title="Jenkins" src="images/logo/Jenkins.svg"></code>
-<code><img width="5%" title="Jira" src="images/logo/Java.svg"></code>
 <code><img width="5%" title="Telegram" src="images/logo/Telegram.svg"></code>
 </p>
 
-## :scroll: Реализованные проверки
+> *В данном проекте автотесты написаны на <code><strong>*Java*</strong></code> с использованием фреймворка <code><strong>*Selenide*</strong></code> для UI-тестов.*
+>
+>*Для сборки проекта используется <code><strong>*Gradle*</strong></code>.*
+>
+>*<code><strong>*JUnit 5*</strong></code> используется как фреймворк для модульного тестирования.*
+>
+>*Запуск тестов выполняется из <code><strong>*Jenkins*</strong></code>.*
+>
+>*<code><strong>*Selenoid*</strong></code> используется для запуска браузеров в контейнерах  <code><strong>*Docker*</strong></code>.*
+>
+>*<code><strong>*Allure Report, Allure TestOps, Jira, Telegram Bot*</strong></code> используются для визуализации результатов тестирования.*
 
-- ✓ Проверка поиска на главной странице.
-- ✓ Проверка фильтра на странице Смартфоны.
-- ✓ Проверка сортировки на странице Смартфоны".
-- ✓ Проверка карточки товара на странице роутеры.
-- ✓ Проверка страницу Оплата и Доставка.
+## :bookmark_tabs: Реализованы проверки
 
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UI
 
-## <img src="images/logo/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> Jenkins job
-<a target="_blank" href="https://jenkins.autotests.cloud/job/qa_guru_15_quick_project/">Сборка в Jenkins</a>
-<p align="center">
-<a href="https://jenkins.autotests.cloud/job/qa_guru_15_quick_project/"><img src="images/jenkins_job.png" alt="Jenkins"/></a>
-</p>
+> - [x] *Проверка поиска на главной странице*
+>- [x] *Проверка фильтра на странице Смартфоны*
+>- [x] *Проверка сортировки на странице Смартфоны*
+>- [x] *Проверка карточки товара на странице роутеры*
+>- [x] *Проверка страницу Оплата и Доставка*
 
-### Параметры сборки в Jenkins:
-
-- browser (браузер, по умолчанию chrome)
-- browserVersion (версия браузера, по умолчанию 100.0)
-- browserSize (размер окна браузера, по умолчанию 1920x1080)
-- browserMobileView (название мобильного устройства, для примера iPhone X)
-- remoteDriverUrl (логин, пароль и адрес удаленного сервера selenoid или grid)
-- threads (количество потоков)
 
 ## :computer: Запуск тестов из терминала
 
-Локальный запуск:
+### Локальный запуск тестов
+
 ```bash
 gradle clean test
 ```
 
-Удаленный запуск:
+### Удаленный запуск тестов
+
 ```bash
-clean
-test
+gradle clean test 
 -Dbrowser=${BROWSER}
 -DbrowserVersion=${BROWSER_VERSION}
 -DbrowserSize=${BROWSER_SIZE}
 -DbrowserMobileView="${BROWSER_MOBILE}"
--DremoteDriverUrl=https://${LOGIN}:${PASSWORD}@${REMOTE_DRIVER_URL}/wd/hub/
+-DremoteDriverUrl=https://user1:1234@${REMOTE_DRIVER_URL}/wd/hub/
 -Dthreads=${THREADS}
 ```
+
+### Параметры сборки
+
+> <code>REMOTE_URL</code> – адрес удаленного сервера, на котором будут запускаться тесты.
+>
+> <code>BROWSER</code> – браузер, в котором будут выполняться тесты (_по умолчанию - <code>chrome</code>_).
+>
+> <code>BROWSER_VERSION</code> – версия браузера, в которой будут выполняться тесты (_по умолчанию - <code>91.0</code>_).
+>
+> <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты (_по умолчанию - <code>1920x1080</code>_).
+
+## <img width="4%" title="Jenkins" src="images/logo/Jenkins.svg"> Запуск тестов в [Jenkins](https://jenkins.autotests.cloud/job/AUTO-638/)
+
+*Для запуска сборки необходимо указать значения параметров и нажать кнопку <code><strong>*Собрать*</strong></code>.*
+
+<p align="center">
+  <img src="images/screens/Jenkins.png" alt="job" width="800">
+</p>
 
 ## <img src="images/logo/Allure.svg" width="25" height="25"  alt="Allure"/></a> Отчет в <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_performance_lab_complete_project/22/allure/">Allure report</a>
 
@@ -97,19 +112,13 @@ test
 ### Дашборд
 
 <p align="center">
-<img title="Allure TestOps Dashboard" src="images/testOps_main.png">
+<img title="Allure TestOps Dashboard" src="images/screens/main.png">
 </p>
 
 ### Тест-кейсы
 
 <p align="center">
-<img title="Allure TestOps Tests" src="images/testOps_tests.png">
-</p>
-
-## <img src="images/logo/Jira.svg" width="25" height="25"  alt="Allure"/></a>Интеграция с трекером задач <a target="_blank" href="https://jira.autotests.cloud/browse/AUTO-628">Jira</a>
-
-<p align="center">
-<img title="Jira" src="images/jira_task.png">
+<img title="Allure TestOps Tests" src="images/screens/test_cases.png">
 </p>
 
 ## <img src="images/logo/Telegram.svg" width="25" height="25"  alt="Allure"/></a> Уведомление в Telegram при помощи бота
