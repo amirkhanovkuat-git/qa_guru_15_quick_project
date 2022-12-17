@@ -38,7 +38,7 @@
 >
 >*<code><strong>*Selenoid*</strong></code> используется для запуска браузеров в контейнерах  <code><strong>*Docker*</strong></code>.*
 >
->*<code><strong>*Allure Report, Allure TestOps, Jira, Telegram Bot*</strong></code> используются для визуализации результатов тестирования.*
+>*<code><strong>*Allure Report, Allure TestOps, Telegram Bot*</strong></code> используются для визуализации результатов тестирования.*
 
 ## :bookmark_tabs: Реализованы проверки
 
@@ -107,24 +107,27 @@ gradle clean test
   <img src="images/screens/Allure_Report.png" alt="Allure Report" width="900">
 </p>
 
-## <img src="images/logo/Allure_TO.svg" width="25" height="25"  alt="Allure"/></a>Интеграция с <a target="_blank" href="https://allure.autotests.cloud/launch/10223">Allure TestOps</a>
+## <img width="4%" title="Allure TestOPS" src="images/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/launch/17712)
 
-### Дашборд
+### :pushpin: Основной дашборд
 
 <p align="center">
-<img title="Allure TestOps Dashboard" src="images/screens/main.png">
+  <img src="images/screens/Main.png" alt="dashboards" width="900">
 </p>
 
-### Тест-кейсы
+### :pushpin: Тест-кейсы
 
 <p align="center">
-<img title="Allure TestOps Tests" src="images/screens/test_cases.png">
+  <img src="images/screens/test_cases.png" alt="test cases" width="900">
 </p>
 
-## <img src="images/logo/Telegram.svg" width="25" height="25"  alt="Allure"/></a> Уведомление в Telegram при помощи бота
+
+## <img width="4%" title="Telegram" src="images/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
+
+> После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне тестов.
 
 <p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/Telegram_notification.png">
+<img title="Telegram Notifications" src="images/screens/Telegram_notification.png">
 </p>
 
 
