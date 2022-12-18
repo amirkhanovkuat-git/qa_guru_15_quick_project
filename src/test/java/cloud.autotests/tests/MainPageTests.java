@@ -17,7 +17,7 @@ public class MainPageTests extends TestBase {
                 open("https://shop.beeline.kz/ru/almaty"));
 
         step("Вставить текст на поиск", () ->
-                $(".search-form__input").setValue("iphone")).pressEnter();
+                $(".search-form__input").setValue("iphone").pressEnter());
 
         step("Текст 'Результаты поиска' должны быть видимым", () -> {
             $("main.main--search").shouldHave(text("Результаты поиска"));
